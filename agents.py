@@ -5,13 +5,18 @@ import streamlit as st
 import os
 from langchain_google_genai import ChatGoogleGenerativeAI
 
+api_key = os.getenv("GEMINI_API_KEY")
+if not api_key:
+    raise RuntimeError("GEMINI_API_KEY not set in environment variables.")
+
 myllm = ChatGoogleGenerativeAI(
     model="gemini-2.5-flash",
-    temperature=0.3,  # Good balance for travel logistics
+    temperature=0.3,
     max_output_tokens=8192,
     top_p=0.8,
     top_k=40,
-    convert_system_message_to_human=True  # Important for CrewAI
+    convert_system_message_to_human=True,
+    api_key=api_key
 )
 
 ''' try:
