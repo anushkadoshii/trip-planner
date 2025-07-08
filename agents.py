@@ -10,7 +10,7 @@ if not api_key:
     raise RuntimeError("GEMINI_API_KEY not set in environment variables.")
 
 myllm = ChatGoogleGenerativeAI(
-    model="gemini-2.5-flash",
+    model="gemini/gemini-2.5-flash",
     temperature=0.3,
     max_output_tokens=8192,
     top_p=0.8,
