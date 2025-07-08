@@ -2,10 +2,19 @@ from crewai import Agent
 from tools import search_web_tool
 from crewai import LLM
 import streamlit as st
+import os
+
+try:
+    api_key = st.secrets["GEMINI_API_KEY"]
+except KeyError:
+    api_key = os.getenv("GEMINI_API_KEY")
+    if not api_key:
+        st.error("Please add GEMINI_API_KEY to secrets.toml or set it as an environment variable")
+        st.stop()
 
 myllm = LLM(
     model="gemini/gemini-1.5-flash",
-    api_key=st.secrets["GEMINI_API_KEY"]
+    api_key=api_key
 )
 
 city_guide = Agent(
