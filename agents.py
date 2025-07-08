@@ -10,7 +10,7 @@ if not api_key:
     raise RuntimeError("GEMINI_API_KEY not set in environment variables.")
 
 myllm = LLM(
-    model="gemini/gemini-2.5-flash",  # Use provider prefix for CrewAI/LiteLLM
+    model="gemini/gemini-1.5-flash",  # Use provider prefix for CrewAI/LiteLLM
     api_key=api_key,
     temperature=0.3,
     max_tokens=8192,
@@ -41,7 +41,7 @@ city_guide = Agent(
     ),
     tools = [search_web_tool],
     verbose = True,
-    max_iter = 5,
+    max_iter = 3,
     llm = myllm,
     allow_delegation = False,
 )
@@ -55,7 +55,7 @@ trip_expert = Agent(
     ),
     tools = [search_web_tool],
     verbose = True,
-    max_iter = 5,
+    max_iter = 3,
     llm = myllm,
     allow_delegation = False,
 )
@@ -68,7 +68,7 @@ planning_expert = Agent(
         "Your attention to detail and creativity ensure every trip is memorable and well-organized."
     ),
     verbose = True,
-    max_iter = 5,
+    max_iter = 3,
     llm = myllm,
     allow_delegation = False,
 )
