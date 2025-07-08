@@ -1,3 +1,7 @@
+import sys
+__import__('pysqlite3')
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3') 
+
 from agents import city_guide, trip_expert, planning_expert
 from tasks import guide_task, location_task, planner_task
 from crewai import Crew, Process
