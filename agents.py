@@ -1,11 +1,11 @@
 from crewai import Agent
 from tools import search_web_tool
-from langchain_ollama.llms import OllamaLLM
 from crewai import LLM
+import streamlit as st
 
 myllm = LLM(
     model="gemini/gemini-1.5-flash",
-    api_key=os.getenv("GEMINI_API_KEY")
+    api_key=st.secrets["GEMINI_API_KEY"]
 )
 
 city_guide = Agent(
