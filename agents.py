@@ -3,8 +3,18 @@ from tools import search_web_tool
 from crewai import LLM
 import streamlit as st
 import os
+from langchain_google_genai import ChatGoogleGenerativeAI
 
-try:
+myllm = ChatGoogleGenerativeAI(
+    model="gemini-2.5-flash",
+    temperature=0.3,  # Good balance for travel logistics
+    max_output_tokens=8192,
+    top_p=0.8,
+    top_k=40,
+    convert_system_message_to_human=True  # Important for CrewAI
+)
+
+''' try:
     api_key = st.secrets["GEMINI_API_KEY"]
 except KeyError:
     api_key = os.getenv("GEMINI_API_KEY")
@@ -15,7 +25,7 @@ except KeyError:
 myllm = LLM(
     model="gemini/gemini-2.5-flash",
     api_key=api_key
-)
+) '''
 
 city_guide = Agent(
     role = "City Local Guide and Cultural Ambassador",
