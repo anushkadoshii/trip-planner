@@ -2,6 +2,7 @@ import sys
 __import__('pysqlite3')
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
+import os
 from agents import city_guide, trip_expert, planning_expert
 from tasks import guide_task, location_task, planner_task
 from crewai import Crew, Process
@@ -12,8 +13,10 @@ st.title("🌍 WanderAI - Your trip itinerary planner")
 st.markdown("""
 **Plan your next trip with us!**  
 Enter your travel details below, and our AI-powered travel assistant will create a personalized itinerary including:
- Best places to visit 🎡   Accommodation & budget planning 💰
- Local food recommendations 🍕   Transportation & visa details 🚆
+- Best places to visit 🎡
+- Accommodation & budget planning 💰
+- Local food recommendations 🍕
+- Transportation & visa details 🚆
 """)
 
 source = st.text_input("Source City")
@@ -66,5 +69,23 @@ if st.button("Generate my itinerary"):
                     file_name=f"Travel_Plan_{destination}.txt",
                     mime="text/plain"
                 )
+
+                # Download .md files as .txt
+                md_files = [
+                    ("guide_report.md", "Guide_Report.txt"),
+                    ("city_report.md", "City_Report.txt"),
+                    ("travel_plan.md", "Travel_Plan.txt")
+                ]
+                for md_file, txt_file in md_files:
+                    if os.path.exists(md_file):
+                        with open(md_file, "r", encoding="utf-8") as f:
+                            content = f.read()
+                        st.download_button(
+                            label=f"📥 Download {txt_file}",
+                            data=content,
+                            file_name=txt_file,
+                            mime="text/plain"
+                        )
         except Exception as e:
             st.error(f"An error occurred while generating your itinerary: {e}")
+
