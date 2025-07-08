@@ -12,6 +12,7 @@ def guide_task(agent, destination, interests, date_from, date_to):
         """,
         expected_output="A day-wise itinerary including attractions, food, and activities.",
         agent=agent,
+        output_file='guide_report.md',
     )
 
 def location_task(agent, source, destination, date_from, date_to):
@@ -25,6 +26,7 @@ def location_task(agent, source, destination, date_from, date_to):
         """,
         expected_output="A detailed report with relevant travel data.",
         agent=agent,
+        output_file='city_report.md',
     )
 
 def planner_task(context, agent, destination, interests, date_from, date_to):
@@ -43,4 +45,5 @@ def planner_task(context, agent, destination, interests, date_from, date_to):
         expected_output="A structured travel itinerary.",
         context=context,
         agent=agent,
+        output_file='travel_plan.md',
     )
