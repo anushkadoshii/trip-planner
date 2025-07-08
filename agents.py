@@ -1,9 +1,11 @@
 from crewai import Agent
 from tools import search_web_tool
-import google.generativeai as genai
+from langchain_ollama.llms import OllamaLLM
 
-genai.configure(api_key="AIzaSyDFO8_NWA5nV08fpZVOjZrdSUN8StjGnbk")
-myllm = genai.GenerativeModel("gemini-2.5-flash")
+myllm = LLM(
+    model="ollama/llama3.2",
+    base_url="http://localhost:11434"
+)
 
 city_guide = Agent(
     role = "City Local Guide and Cultural Ambassador",
