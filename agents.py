@@ -1,6 +1,7 @@
 from crewai import Agent
 from tools import search_web_tool
 from langchain_ollama.llms import OllamaLLM
+from crewai import LLM
 
 myllm = LLM(
     model="ollama/llama3.2",
