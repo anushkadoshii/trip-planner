@@ -9,15 +9,15 @@ api_key = os.getenv("GEMINI_API_KEY")
 if not api_key:
     raise RuntimeError("GEMINI_API_KEY not set in environment variables.")
 
-myllm = ChatGoogleGenerativeAI(
-    model="gemini/gemini-2.5-flash",
+myllm = LLM(
+    model="gemini/gemini-2.5-flash",  # Use provider prefix for CrewAI/LiteLLM
+    api_key=api_key,
     temperature=0.3,
-    max_output_tokens=8192,
+    max_tokens=8192,
     top_p=0.8,
-    top_k=40,
-    convert_system_message_to_human=True,
-    api_key=api_key
+    top_k=40
 )
+
 
 ''' try:
     api_key = st.secrets["GEMINI_API_KEY"]
