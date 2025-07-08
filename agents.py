@@ -4,8 +4,8 @@ from langchain_ollama.llms import OllamaLLM
 from crewai import LLM
 
 myllm = LLM(
-    model="ollama/llama3.2",
-    base_url="http://localhost:11434"
+    model="gemini/gemini-1.5-flash",
+    api_key=os.getenv("GEMINI_API_KEY")
 )
 
 city_guide = Agent(
