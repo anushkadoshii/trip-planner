@@ -13,7 +13,7 @@ except KeyError:
         st.stop()
 
 myllm = LLM(
-    model="gemini/gemini-1.5-flash",
+    model="gemini/gemini-2.5-flash",
     api_key=api_key
 )
 
